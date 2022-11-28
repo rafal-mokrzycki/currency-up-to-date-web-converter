@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency converter</title>
+</head>
+<body>
+    <form>
+        <label for="currency1">From currency: </label>
+        <input type="number">
+        <select class="form-control" name="currency1" id="currency1" type="text" method="GET" action="/">
+            {% for currency in currencies %}
+            <option value="{{currency}}" SELECTED>{{currency}}</option>"
+            {% endfor %}
+        </select><br><br>
+        <label for="currency2">To currency: </label>
+        <input type="number">
+        <select class="form-control" name="currency2" id="currency2" type="text" method="GET" action="/">
+            {% for currency in currencies %}
+            <option value="{{currency}}" SELECTED>{{currency}}</option>"
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Convert"><br><br>
+        <output name="output" for="currency1 currency2"></output>
+    </form>
+</body>
+</html>
