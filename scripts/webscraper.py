@@ -1,8 +1,6 @@
-import os
+import logging as log
 import re
-import time
 
-import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
@@ -11,7 +9,7 @@ class Converter:
 
     url = "https://wechselkurse-euro.de/"
 
-    def get_table_with_currencies(self, url=None):
+    def get_dict_with_currencies(self, url=None):
         """Return a pd.DataFrame with currencies from the website 'url'."""
         if url is None:
             url = self.url
@@ -29,5 +27,5 @@ class Converter:
                 exchange_rate = re.search(">\d+?\.\d+<", string).group()[1:-1]
                 dictionary[symbol] = exchange_rate
             except AttributeError:
-                print("String of interest not found in this line")
+                log.warning("String of interest not found in this line")
         return dictionary
