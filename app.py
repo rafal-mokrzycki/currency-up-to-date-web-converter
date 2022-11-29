@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-"""
-To run type: flask --app hello run
-"""
-import numpy as np
-from flask import Flask, flash, make_response, redirect, render_template, request, url_for
+from flask import Flask, render_template, request
 
 from scripts.webscraper import Converter
 
@@ -22,7 +18,8 @@ def home():
         result = Converter().convert_currencies(
             currencies_dict, currency_from, currency_to, amount
         )
-        return f"{Converter().format_number(amount, currency_from)} is equal to {Converter().format_number(result, currency_to)}."
+        return render_template("index.html", currencies=currencies, result=result)
+        # return f"{Converter().format_number(amount, currency_from)} is equal to {Converter().format_number(result, currency_to)}."
     return render_template("index.html", currencies=currencies)
 
 
