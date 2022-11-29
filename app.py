@@ -20,8 +20,12 @@ def home():
         currency_to = request.form.get("currency_to")
         amount = request.form.get("amount")
         if currency_from != "EUR" and currency_to != "EUR":
-            euro = float(currencies_dict[currency_from]) * float(amount)
-            result = np.round(float(currencies_dict[currency_from]) * euro, 2)
+            result = np.round(
+                float(amount)
+                * float(currencies_dict[currency_from])
+                * float(currencies_dict[currency_to]),
+                2,
+            )
             return (
                 f"{str(amount)} {currency_from} is equal to {str(result)} {currency_to}."
             )
