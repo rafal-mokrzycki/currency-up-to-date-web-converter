@@ -87,5 +87,18 @@ class Converter:
             raise ValueError("Wrong currency symbol.")
 
     @staticmethod
-    def format_number(number, currency):
+    def format_number(number: int | float, currency: str):
+        """Formats a floating point number into string wiht a currency code,
+        eg. 2.50 -> '2.50 PLN'
+
+        Parameters:
+
+        number : int | float
+            A number to format.
+
+        currency : str
+            Currency symbol (or any other string) to format.
+
+        Returns:
+            An f-string in format: '2.50 PLN'"""
         return "{:.2f}".format(number) + f" {currency}"
