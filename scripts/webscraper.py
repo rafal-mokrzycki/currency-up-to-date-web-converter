@@ -21,9 +21,6 @@ class Converter:
         rows_additional = table_additional[0].find_all("tr") + table_additional[
             1
         ].find_all("tr")
-        print(type(rows_main))
-        print(type(rows_additional))
-        # )
         rows_all = rows_main + rows_additional
         dictionary = {}
         for row in rows_all:
@@ -36,5 +33,4 @@ class Converter:
                 dictionary[symbol] = exchange_rate
             except AttributeError:
                 log.warning("String of interest not found in this line")
-        print(dictionary)
         return dictionary

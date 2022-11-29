@@ -17,14 +17,8 @@ def home():
     currencies = sorted(list(currencies_dict.keys()))
     if request.method == "POST":
         currency_from = request.form.get("currency_from")
-        print(currency_from)
         currency_to = request.form.get("currency_to")
-        print(currency_to)
-        print(currencies_dict[currency_from])
-        print(currencies_dict[currency_to])
         amount = request.form.get("amount")
-        print(type(amount))
-        print(type(currencies_dict[currency_from]))
         if currency_from != "EUR" and currency_to != "EUR":
             euro = float(currencies_dict[currency_from]) * float(amount)
             result = np.round(float(currencies_dict[currency_from]) * euro, 2)
