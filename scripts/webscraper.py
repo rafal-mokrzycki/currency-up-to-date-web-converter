@@ -64,12 +64,15 @@ class Converter:
             ValueError if a currency symbol is not in the dictionary.
         """
         if currency_from != "EUR" and currency_to != "EUR":
-            return np.round(
-                float(amount)
-                * float(currencies_dict[currency_from])
-                * float(currencies_dict[currency_to]),
-                2,
-            )
+            if currency_from in currencies_dict and currency_to in currencies_dict:
+                return np.round(
+                    float(amount)
+                    * float(currencies_dict[currency_from])
+                    * float(currencies_dict[currency_to]),
+                    2,
+                )
+            else:
+                raise ValueError("Wrong currency symbol.")
         elif currency_from == "EUR" and currency_to == "EUR":
             return float(amount)
         elif currency_from == "EUR":
