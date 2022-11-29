@@ -18,7 +18,8 @@ def home():
         result = Converter().convert_currencies(
             currencies_dict, currency_from, currency_to, amount
         )
-        return render_template("index.html", currencies=currencies, result=result)
+        result_str = f"{Converter().format_number(amount, currency_from)} is equal to {Converter().format_number(result, currency_to)}."
+        return render_template("index.html", currencies=currencies, result=result_str)
         # return f"{Converter().format_number(amount, currency_from)} is equal to {Converter().format_number(result, currency_to)}."
     return render_template("index.html", currencies=currencies)
 

@@ -1,0 +1,37 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #242424;
+    background-color: rgb(180, 224, 255);
+    text-align: left;
+  }
+h1 {
+    font-family: "Verdana", sans-serif;
+    color: #1c2b83;
+    text-align:center;
+}
+div.upper-div {
+    height: 100px;
+}
+
+div.middle-div {
+    height: 100px;
+}
+
+div.form-div {
+    padding: 0 40%;
+
+}
+select, input {float: right;
+width: 70px;}
+
+.form-div input[type=submit] {
+    background-color: #1c2b83;
+    color:azure;
+    border-color: #1c2b83;
+    width: 100px;
+    height: 30px;
+    font: Verdana;
+    }
+.form-div input.result {
+    width: 240px;
+}
