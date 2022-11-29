@@ -37,7 +37,32 @@ class Converter:
         return dictionary
 
     @staticmethod
-    def convert_currencies(currencies_dict, currency_from, currency_to, amount):
+    def convert_currencies(
+        currencies_dict: dict, currency_from: str, currency_to: str, amount: int | float
+    ):
+        """Convert currency into another one.
+
+        Parameters:
+
+        currencies_dict : dict
+            A dictionary with keys being currency symbol (eg. EUR, GBP, USD) and values
+            being exchange rates to EUR (eg. 1.0, 3.12, 5.11).
+
+        currency_from : str
+            A currency symbol, from which the conversion will be made.
+
+        currency_to : str
+            A currency symbol, to which the conversion will be made.
+
+        amount : int | float
+            Amount of money to be converted.
+
+        Returns:
+            Result of conversion, a floating point number.
+
+        Raises:
+            ValueError if a currency symbol is not in the dictionary.
+        """
         if currency_from != "EUR" and currency_to != "EUR":
             return np.round(
                 float(amount)
@@ -61,5 +86,18 @@ class Converter:
             raise ValueError("Wrong currency symbol.")
 
     @staticmethod
-    def format_number(number, currency):
+    def format_number(number: int | float, currency: str):
+        """Formats a floating point number into string wiht a currency code,
+        eg. 2.50 -> '2.50 PLN'
+
+        Parameters:
+
+        number : int | float
+            A number to format.
+
+        currency : str
+            Currency symbol (or any other string) to format.
+
+        Returns:
+            An f-string in format: '2.50 PLN'"""
         return "{:.2f}".format(number) + f" {currency}"

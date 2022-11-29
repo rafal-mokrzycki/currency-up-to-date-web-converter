@@ -18,11 +18,11 @@ def home():
     if request.method == "POST":
         currency_from = request.form.get("currency_from")
         currency_to = request.form.get("currency_to")
-        amount = request.form.get("amount")
+        amount = float(request.form.get("amount"))
         result = Converter().convert_currencies(
             currencies_dict, currency_from, currency_to, amount
         )
-        return f"{str(amount)} {currency_from} is equal to {str(result)} {currency_to}."
+        return f"{Converter().format_number(amount, currency_from)} is equal to {Converter().format_number(result, currency_to)}."
     return render_template("index.html", currencies=currencies)
 
 
