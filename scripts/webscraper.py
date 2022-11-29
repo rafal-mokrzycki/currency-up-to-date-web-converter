@@ -61,8 +61,7 @@ class Converter:
             Result of conversion, a floating point number.
 
         Raises:
-            ValueError if a currency symbol is not in the dictionary
-
+            ValueError if a currency symbol is not in the dictionary.
         """
         if currency_from != "EUR" and currency_to != "EUR":
             return np.round(
