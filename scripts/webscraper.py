@@ -1,6 +1,7 @@
 import logging as log
 import re
 
+import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
@@ -34,3 +35,31 @@ class Converter:
             except AttributeError:
                 log.warning("String of interest not found in this line")
         return dictionary
+
+    @staticmethod
+    def convert_currencies(currencies_dict, currency_from, currency_to, amount):
+        if currency_from != "EUR" and currency_to != "EUR":
+            return np.round(
+                float(amount)
+                * float(currencies_dict[currency_from])
+                * float(currencies_dict[currency_to]),
+                2,
+            )
+        elif currency_from == "EUR" and currency_to == "EUR":
+            return float(amount)
+        elif currency_from == "EUR":
+            return np.round(
+                float(amount) * float(currencies_dict[currency_to]),
+                2,
+            )
+        elif currency_to == "EUR":
+            return np.round(
+                float(amount) / float(currencies_dict[currency_from]),
+                2,
+            )
+        else:
+            raise ValueError("Wrong currency symbol.")
+
+    @staticmethod
+    def format_number(number, currency):
+        return "{:.2f}".format(number) + f" {currency}"
