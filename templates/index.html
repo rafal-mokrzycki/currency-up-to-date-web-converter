@@ -5,27 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency converter</title>
+    <link href="/static/style.css" rel="stylesheet">
 </head>
 <body>
-    <form action="{{url_for('home')}}" method="post" >
-        <label for="currency_from">From currency: </label>
-        <select class="form-control" name="currency_from" id="currency_from" type="text" >
-            <option value="{{currencies[0]}}" selected>{{currencies[0]}}</option>
-            {% for currency in currencies[1:] %}
-            <option value="{{currency}}" >{{currency}}</option>"
-            {% endfor %}
-        </select><br><br>
-        <label for="amount">Amount: </label>
-        <input type="number" name="amount" id="amount" value="{{amount}}"><br><br>
-        <label for="currency_to">To currency: </label>
-        <select class="form-control" name="currency_to" id="currency_to" type="text" method="GET" action="/">
-            <option value="{{currencies[0]}}" selected>{{currencies[0]}}</option>
-            {% for currency in currencies[1:] %}
-            <option value="{{currency}}">{{currency}}</option>"
-            {% endfor %}
-        </select><br><br>
-        <input type="submit" value="Convert"><br><br>
-        <input type="number" placeholder="Result" style="background-color:cornsilk;color:mediumblue;font-weight:bold" value="{{ result }}" readonly>
-    </form>
+    <div class="upper-div"></div>
+    <h1>Currency Converter</h1>
+    <div class="middle-div"></div>
+    <div class="form-div">
+        <form action="{{url_for('home')}}" method="post" >
+            <label for="currency_from">From currency: </label>
+            <select class="form-control" name="currency_from" id="currency_from" type="text" >
+                <option value="{{currencies[0]}}" selected>{{currencies[0]}}</option>
+                {% for currency in currencies[1:] %}
+                <option value="{{currency}}" >{{currency}}</option>"
+                {% endfor %}
+            </select><br><br>
+            <label for="amount">Amount: </label>
+            <input type="number" step=0.01 name="amount" id="amount" value="{{amount}}"><br><br>
+            <label for="currency_to">To currency: </label>
+            <select class="form-control" name="currency_to" id="currency_to" type="text" method="GET" action="/">
+                <option value="{{currencies[0]}}" selected>{{currencies[0]}}</option>
+                {% for currency in currencies[1:] %}
+                <option value="{{currency}}">{{currency}}</option>"
+                {% endfor %}
+            </select><br><br>
+            <input type="submit" value="Convert" onclick="isEmpty()"><br><br>
+            <input type="text" class="result" placeholder="Result" value="{{ result }}" readonly>
+        </form>
+    </div>
+    <script>
+        function isEmpty() {
+            var amount = document.getElementById('amount')
+            if (amount.value.length == 0) {
+                alert("Amount field cannot be empty.");
+                return false;
+            }
+            return true;
+            }
+    </script>
 </body>
 </html>
