@@ -15,10 +15,18 @@ class Converter:
             url = self.url
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
-        table = soup.find_all("table")
-        rows = table[0].find_all("tr") + table[1].find_all("tr")
+        table_main = soup.find_all("div", class_="mb10social")
+        table_additional = soup.find_all("table")
+        rows_main = table_main[0].find_all("td")
+        rows_additional = table_additional[0].find_all("tr") + table_additional[
+            1
+        ].find_all("tr")
+        print(type(rows_main))
+        print(type(rows_additional))
+        # )
+        rows_all = rows_main + rows_additional
         dictionary = {}
-        for row in rows:
+        for row in rows_all:
             try:
                 string = re.search(
                     '(kurz_kurz (narast|poklas|rovnako)).*[A-Z]{3}">\d+?\.\d+<', str(row)
@@ -28,4 +36,5 @@ class Converter:
                 dictionary[symbol] = exchange_rate
             except AttributeError:
                 log.warning("String of interest not found in this line")
+        print(dictionary)
         return dictionary
